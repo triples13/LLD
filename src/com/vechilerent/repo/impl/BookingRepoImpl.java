@@ -1,6 +1,5 @@
 package com.vechilerent.repo.impl;
 
-import com.health.flipfit.service.AdminService;
 import com.vechilerent.model.Booking;
 import com.vechilerent.model.VechileType;
 import com.vechilerent.repo.BookingRepo;
