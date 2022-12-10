@@ -3,12 +3,9 @@ package com.vechilerent.service.impl;
 import com.vechilerent.model.*;
 import com.vechilerent.repo.BranchRepo;
 import com.vechilerent.repo.PricingRepo;
-import com.vechilerent.repo.impl.BranchRepoImpl;
-import com.vechilerent.repo.impl.PricingRepoImpl;
 import com.vechilerent.service.AdminPanel;
 
 import java.util.*;
-import java.util.random.RandomGenerator;
 
 public class AdminPanelImpl implements AdminPanel {
 

@@ -29,13 +29,10 @@ public class Driver {
         queueService.addSubscription("topic-3",new Subscriber("subscriber-8"));
         queueService.addSubscription("topic-3",new Subscriber("subscriber-9"));
 
-
-
-        queueService.publish("topic-1",new Message("hey to you"));
-        queueService.publish("topic-2",new Message("welcome dear"));
-        queueService.publish("topic-3",new Message("tata nexon"));
-
-
-
+        queueService.publish("topic-1",new Message("first message"));
+        queueService.publish("topic-1",new Message("second messsage"));
+        queueService.publish("topic-1",new Message("third message"));
+        queueService.publish("topic-1",new Message("fourth messsage"));
+        queueService.publish("topic-1",new Message("fifth messsage"));
     }
 }

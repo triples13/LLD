@@ -1,34 +1,53 @@
 package com.distributedqueue.model.topic;
 
 import com.distributedqueue.model.consumer.ISubscriber;
+import com.distributedqueue.model.consumer.SubscriberWorker;
 import com.distributedqueue.model.message.Message;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-@Getter
-@Setter
+import java.util.Map;
+
 public class TopicHandler {
 
     public TopicHandler(Topic topic){
         this.topic = topic;
         this.subscriberList = new ArrayList<>();
+        this.subscriberWorkerMap = new HashMap<>();
     }
     private Topic topic;
     private List<ISubscriber> subscriberList;
+    private Map<String, SubscriberWorker> subscriberWorkerMap;
 
     public void publishMessageToTopic(Message message){
+        topic.getMessageList().add(message);
          for(ISubscriber subscriber: subscriberList){
-             try {
-                 Thread.sleep(1000);
-             } catch (InterruptedException e) {
-                 throw new RuntimeException(e);
-             }
-             new Thread(()->subscriber.receiveMessage(message)).start();
+             new Thread(subscriberWorkerMap.get(subscriber.subscriberId)).start();
          }
     }
 
+    public Topic getTopic() {
+        return topic;
+    }
 
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
 
+    public List<ISubscriber> getSubscriberList() {
+        return subscriberList;
+    }
+
+    public void setSubscriberList(List<ISubscriber> subscriberList) {
+        this.subscriberList = subscriberList;
+    }
+
+    public Map<String, SubscriberWorker> getSubscriberWorkerMap() {
+        return subscriberWorkerMap;
+    }
+
+    public void setSubscriberWorkerMap(Map<String, SubscriberWorker> subscriberWorkerMap) {
+        this.subscriberWorkerMap = subscriberWorkerMap;
+    }
 }
