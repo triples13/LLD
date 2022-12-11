@@ -34,5 +34,9 @@ public class Driver {
         queueService.publish("topic-1",new Message("third message"));
         queueService.publish("topic-1",new Message("fourth messsage"));
         queueService.publish("topic-1",new Message("fifth messsage"));
+
+        queueService.publish("topic-2",new Message("welcome first"));
+        queueService.publish("topic-2",new Message("welcome second"));
+        queueService.publish("topic-2",new Message("welcome third"));
     }
 }

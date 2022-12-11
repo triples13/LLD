@@ -20,10 +20,12 @@ public class TopicHandler {
     private List<ISubscriber> subscriberList;
     private Map<String, SubscriberWorker> subscriberWorkerMap;
 
-    public void publishMessageToTopic(Message message){
+    public void publishMessageToTopic(Message message)  {
         topic.getMessageList().add(message);
          for(ISubscriber subscriber: subscriberList){
-             new Thread(subscriberWorkerMap.get(subscriber.subscriberId)).start();
+             SubscriberWorker subscriberWorker = subscriberWorkerMap.get(subscriber.subscriberId);
+             new Thread(subscriberWorker).start();
+             subscriberWorker.wakeifNeeded();
          }
     }
 
